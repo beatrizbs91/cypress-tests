@@ -1,0 +1,22 @@
+image: cypress/browsers:node20.11.1-chrome120-ff120
+
+stages:
+  - test
+
+cache:
+  paths:
+    - node_modules/
+
+cypress_tests:
+  stage: test
+
+  script:
+    - npm ci
+    - npm run test
+
+  artifacts:
+    when: always
+    paths:
+      - cypress/screenshots
+      - cypress/videos
+    expire_in: 1 week
